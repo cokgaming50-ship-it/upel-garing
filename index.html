@@ -1,0 +1,1408 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>KontrakanKu</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style-tambahan.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- ================= SIDEBAR ================= -->
+    <aside class="sidebar">
+
+        <div class="logo">
+            🏠
+            <span id="logoNama">KontrakanKu</span>
+        </div>
+
+        <nav>
+            <a href="#" class="menu-link active" data-page="dashboard">🏠 <span>Dashboard</span></a>
+            <a href="#" class="menu-link" data-page="kas">💰 <span>Kas</span></a>
+            <a href="#" class="menu-link" data-page="listrik">⚡ <span>Listrik</span></a>
+            <a href="#" class="menu-link" data-page="wifi">📶 <span>Wi-Fi</span></a>
+            <a href="#" class="menu-link" data-page="beras">🍚 <span>Beras</span></a>
+            <a href="#" class="menu-link" data-page="pembelian">🛒 <span>Pembelian</span></a>
+            <a href="#" class="menu-link" data-page="penghuni">👥 <span>Penghuni</span></a>
+            <a href="#" class="menu-link" data-page="tugas">📋 <span>Tugas</span></a>
+            <a href="#" class="menu-link" data-page="laporan">📈 <span>Laporan</span></a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <a href="#" class="menu-link" data-page="pengaturan">⚙️ <span>Pengaturan</span></a>
+        </div>
+
+    </aside>
+
+
+    <!-- ================= MAIN ================= -->
+    <main class="main">
+
+
+        <!-- ================= DASHBOARD ================= -->
+        <section id="dashboard-page" class="page active-page">
+
+            <header class="header">
+
+                <div>
+                    <h1>Sugeng rawuh</h1>
+                    <p id="welcomeText">Selamat datang kembali di KontrakanKu</p>
+                </div>
+
+                <div class="header-right">
+
+                    <button class="notification">🔔</button>
+
+                    <div class="profile">
+                        <div class="avatar" id="avatarProfil">P</div>
+                        <div>
+                            <strong id="profileNama">Penghuni</strong>
+                            <small>Admin</small>
+                        </div>
+                    </div>
+
+                </div>
+
+            </header>
+
+
+            <!-- MENU CEPAT -->
+            <section class="quick-menu">
+
+                <div class="quick-card" data-page="kas">
+                    <div class="quick-icon">💰</div>
+                    <span>Kas</span>
+                </div>
+
+                <div class="quick-card" data-page="listrik">
+                    <div class="quick-icon">⚡</div>
+                    <span>Listrik</span>
+                </div>
+
+                <div class="quick-card" data-page="wifi">
+                    <div class="quick-icon">📶</div>
+                    <span>Wi-Fi</span>
+                </div>
+
+                <div class="quick-card" data-page="beras">
+                    <div class="quick-icon">🍚</div>
+                    <span>Beras</span>
+                </div>
+
+                <div class="quick-card" data-page="pembelian">
+                    <div class="quick-icon">🛒</div>
+                    <span>Pembelian</span>
+                </div>
+
+                <div class="quick-card" data-page="penghuni">
+                    <div class="quick-icon">👥</div>
+                    <span>Penghuni</span>
+                </div>
+
+            </section>
+
+
+            <!-- RINGKASAN -->
+            <section class="summary">
+
+                <div class="summary-card kas">
+                    <div>
+                        <p>Saldo Kas</p>
+                        <h2 id="dashboardSaldo">Rp 0</h2>
+                    </div>
+                    <div class="summary-icon">💰</div>
+                </div>
+
+                <div class="summary-card listrik">
+                    <div>
+                        <p>Status Listrik</p>
+                        <h2 id="dashboardListrik">Belum Ada</h2>
+                    </div>
+                    <div class="summary-icon">⚡</div>
+                </div>
+
+                <div class="summary-card wifi">
+                    <div>
+                        <p>Status Wi-Fi</p>
+                        <h2 id="dashboardWifi">Belum Ada</h2>
+                    </div>
+                    <div class="summary-icon">📶</div>
+                </div>
+
+                <div class="summary-card beras">
+                    <div>
+                        <p>Stok Beras</p>
+                        <h2 id="dashboardBeras">0 kg</h2>
+                    </div>
+                    <div class="summary-icon">🍚</div>
+                </div>
+
+                <div class="summary-card penghuni">
+                    <div>
+                        <p>Penghuni Aktif</p>
+                        <h2 id="dashboardPenghuni">0</h2>
+                    </div>
+                    <div class="summary-icon">👥</div>
+                </div>
+
+                <div class="summary-card tugas">
+                    <div>
+                        <p>Tugas Belum Selesai</p>
+                        <h2 id="dashboardTugas">0</h2>
+                    </div>
+                    <div class="summary-icon">📋</div>
+                </div>
+
+            </section>
+
+
+            <!-- KEUANGAN BULAN INI -->
+            <div class="dashboard-finance-summary">
+
+                <div class="finance-card">
+                    <span>💰 Pemasukan Bulan Ini</span>
+                    <strong id="dashboardPemasukanBulanIni">Rp 0</strong>
+                </div>
+
+                <div class="finance-card">
+                    <span>📤 Pengeluaran Bulan Ini</span>
+                    <strong id="dashboardPengeluaranBulanIni">Rp 0</strong>
+                </div>
+
+                <div class="finance-card">
+                    <span>💵 Saldo Bulan Ini</span>
+                    <strong id="dashboardSaldoBulanIni">Rp 0</strong>
+                </div>
+
+            </div>
+
+
+            <!-- GRAFIK -->
+            <div class="dashboard-chart">
+
+                <div class="chart-header">
+
+                    <div>
+                        <p>Grafik Keuangan</p>
+                        <h3>Pemasukan vs Pengeluaran</h3>
+                    </div>
+
+                    <select id="chartPeriod">
+                        <option value="all">Semua Data</option>
+                        <option value="today">Hari Ini</option>
+                        <option value="week">Minggu Ini</option>
+                        <option value="month">Bulan Ini</option>
+                    </select>
+
+                </div>
+
+                <div class="chart-container">
+                    <canvas id="kasChart"></canvas>
+                </div>
+
+            </div>
+
+
+            <!-- TRANSAKSI + STATUS -->
+            <section class="content-grid dashboard-grid">
+
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <h2>Transaksi Terbaru</h2>
+                            <p>Aktivitas kas terbaru</p>
+                        </div>
+
+                        <button id="lihatSemuaKas">Lihat Semua</button>
+
+                    </div>
+
+                    <div id="dashboardTransactions" class="empty">
+                        <div class="empty-icon">💰</div>
+                        <h3>Belum ada transaksi</h3>
+                        <p>Transaksi kas akan muncul di sini.</p>
+                    </div>
+
+                </div>
+
+
+                <div class="panel">
+
+                    <div class="panel-header">
+                        <div>
+                            <h2>Status Kontrakan</h2>
+                            <p>Kondisi bulan ini</p>
+                        </div>
+                    </div>
+
+                    <div class="status-list">
+
+                        <div class="status-item">
+                            <div class="status-left">
+                                <span class="status-icon">⚡</span>
+                                <div>
+                                    <strong>Listrik</strong>
+                                    <small>Token listrik</small>
+                                </div>
+                            </div>
+                            <span class="badge orange" id="statusListrikDashboard">Belum Ada</span>
+                        </div>
+
+                        <div class="status-item">
+                            <div class="status-left">
+                                <span class="status-icon">📶</span>
+                                <div>
+                                    <strong>Wi-Fi</strong>
+                                    <small>Tagihan internet</small>
+                                </div>
+                            </div>
+                            <span class="badge orange" id="statusWifiDashboard">Belum Ada</span>
+                        </div>
+
+                        <div class="status-item">
+                            <div class="status-left">
+                                <span class="status-icon">🍚</span>
+                                <div>
+                                    <strong>Beras</strong>
+                                    <small>Stok saat ini</small>
+                                </div>
+                            </div>
+                            <span class="badge orange" id="statusBerasDashboard">0 kg</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- AKTIVITAS TERBARU -->
+            <div class="dashboard-activity">
+
+                <div class="activity-header">
+                    <div>
+                        <p>Aktivitas</p>
+                        <h3>Aktivitas Terbaru</h3>
+                    </div>
+                </div>
+
+                <div id="dashboardActivityList" class="activity-list">
+                    <p class="activity-empty">Belum ada aktivitas.</p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= KAS ================= -->
+        <section id="kas-page" class="page">
+
+            <header class="page-title">
+
+                <div>
+                    <h1>💰 Kas Kontrakan</h1>
+                    <p>Kelola pemasukan dan pengeluaran kontrakan</p>
+                </div>
+
+                <button class="primary-button" id="tambahTransaksiBtn">
+                    + Tambah Transaksi
+                </button>
+
+            </header>
+
+            <section class="kas-summary">
+
+                <div class="kas-box">
+                    <span>Saldo Saat Ini</span>
+                    <strong id="saldoKas">Rp 0</strong>
+                </div>
+
+                <div class="kas-box income">
+                    <span>Total Pemasukan</span>
+                    <strong id="totalPemasukan">Rp 0</strong>
+                </div>
+
+                <div class="kas-box expense">
+                    <span>Total Pengeluaran</span>
+                    <strong id="totalPengeluaran">Rp 0</strong>
+                </div>
+
+            </section>
+
+            <div class="panel kas-panel">
+
+                <div class="panel-header">
+                    <div>
+                        <h2>Riwayat Transaksi</h2>
+                        <p>Semua transaksi kas kontrakan</p>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Tanggal</th>
+                                <th>Keterangan</th>
+                                <th>Kategori</th>
+                                <th>Jenis</th>
+                                <th>Jumlah</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="transactionTable"></tbody>
+                    </table>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= LISTRIK ================= -->
+        <section id="listrik-page" class="page">
+
+            <header class="page-title">
+
+                <div>
+                    <h1>⚡ Listrik</h1>
+                    <p>Kelola token dan pengeluaran listrik kontrakan</p>
+                </div>
+
+                <button class="primary-button" id="tambahListrikBtn">
+                    + Tambah Pembelian
+                </button>
+
+            </header>
+
+            <section class="kas-summary">
+
+                <div class="kas-box listrik-box">
+                    <span>Pembelian Bulan Ini</span>
+                    <strong id="listrikBulanIni">Rp 0</strong>
+                </div>
+
+                <div class="kas-box income">
+                    <span>Pembelian Terakhir</span>
+                    <strong id="listrikTerakhir">-</strong>
+                </div>
+
+                <div class="kas-box expense">
+                    <span>Jumlah Pembelian</span>
+                    <strong id="jumlahPembelianListrik">0</strong>
+                </div>
+
+            </section>
+
+            <div class="panel">
+
+                <div class="panel-header">
+                    <div>
+                        <h2>Riwayat Listrik</h2>
+                        <p>Riwayat pembelian token listrik</p>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Tanggal</th>
+                                <th>Keterangan</th>
+                                <th>Nominal</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="listrikTable"></tbody>
+                    </table>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= WI-FI ================= -->
+        <section id="wifi-page" class="page">
+
+            <header class="page-title">
+                <div>
+                    <h1>📶 Wi-Fi</h1>
+                    <p>Kelola informasi dan pembayaran Wi-Fi kontrakan</p>
+                </div>
+            </header>
+
+            <section class="wifi-info-grid">
+
+                <div class="wifi-card">
+                    <div class="wifi-icon">📶</div>
+                    <div>
+                        <span>Status Wi-Fi</span>
+                        <h2 id="wifiStatus">Aktif</h2>
+                    </div>
+                </div>
+
+                <div class="wifi-card">
+                    <div class="wifi-icon">🌐</div>
+                    <div>
+                        <span>Provider</span>
+                        <h2 id="wifiProvider">-</h2>
+                    </div>
+                </div>
+
+                <div class="wifi-card">
+                    <div class="wifi-icon">💰</div>
+                    <div>
+                        <span>Biaya / Bulan</span>
+                        <h2 id="wifiCost">Rp 0</h2>
+                    </div>
+                </div>
+
+                <div class="wifi-card">
+                    <div class="wifi-icon">📅</div>
+                    <div>
+                        <span>Jatuh Tempo</span>
+                        <h2 id="wifiDueDate">-</h2>
+                    </div>
+                </div>
+
+            </section>
+
+            <div class="content-card">
+                <div class="card-header">
+                    <div>
+                        <h2>Informasi Wi-Fi</h2>
+                        <p>Atur informasi Wi-Fi kontrakan.</p>
+                    </div>
+                    <button class="primary-btn" onclick="openWifiModal()">✏️ Edit Wi-Fi</button>
+                </div>
+            </div>
+
+            <div class="content-card">
+
+                <div class="card-header">
+                    <div>
+                        <h2>Riwayat Pembayaran</h2>
+                        <p>Catatan pembayaran Wi-Fi.</p>
+                    </div>
+                    <button class="primary-btn" onclick="openWifiPaymentModal()">+ Tambah Pembayaran</button>
+                </div>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Tanggal</th>
+                                <th>Provider</th>
+                                <th>Jumlah</th>
+                                <th>Status</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="wifiPaymentTable"></tbody>
+                    </table>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= BERAS ================= -->
+        <section id="beras-page" class="page">
+
+            <header class="page-title">
+                <div>
+                    <h1>🍚 Beras</h1>
+                    <p>Kelola stok dan penggunaan beras kontrakan</p>
+                </div>
+            </header>
+
+            <section class="beras-summary">
+
+                <div class="beras-box">
+                    <div class="beras-box-icon">🍚</div>
+                    <div>
+                        <span>Stok Saat Ini</span>
+                        <strong id="stokBeras">0 kg</strong>
+                    </div>
+                </div>
+
+                <div class="beras-box">
+                    <div class="beras-box-icon">📥</div>
+                    <div>
+                        <span>Total Masuk</span>
+                        <strong id="totalBerasMasuk">0 kg</strong>
+                    </div>
+                </div>
+
+                <div class="beras-box">
+                    <div class="beras-box-icon">📤</div>
+                    <div>
+                        <span>Total Terpakai</span>
+                        <strong id="totalBerasTerpakai">0 kg</strong>
+                    </div>
+                </div>
+
+            </section>
+
+            <div class="beras-actions">
+                <button class="primary-button" onclick="openBerasModal('masuk')">+ Tambah Beras</button>
+                <button class="secondary-beras-button" onclick="openBerasModal('pakai')">− Catat Pemakaian</button>
+            </div>
+
+            <div class="panel">
+
+                <div class="panel-header">
+                    <div>
+                        <h2>Riwayat Beras</h2>
+                        <p>Catatan stok masuk dan pemakaian beras</p>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Tanggal</th>
+                                <th>Jenis</th>
+                                <th>Jumlah</th>
+                                <th>Keterangan</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="berasTable"></tbody>
+                    </table>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= PEMBELIAN ================= -->
+        <section id="pembelian-page" class="page">
+
+            <header class="page-title">
+                <div>
+                    <h1>🛒 Pembelian</h1>
+                    <p>Kelola catatan pembelian kebutuhan kontrakan</p>
+                </div>
+            </header>
+
+            <section class="pembelian-summary">
+
+                <div class="pembelian-card">
+                    <div class="pembelian-icon">🛒</div>
+                    <div>
+                        <span>Total Pembelian</span>
+                        <strong id="totalPembelian">Rp 0</strong>
+                    </div>
+                </div>
+
+                <div class="pembelian-card">
+                    <div class="pembelian-icon">📦</div>
+                    <div>
+                        <span>Jumlah Transaksi</span>
+                        <strong id="jumlahPembelian">0</strong>
+                    </div>
+                </div>
+
+                <div class="pembelian-card">
+                    <div class="pembelian-icon">📅</div>
+                    <div>
+                        <span>Pembelian Terakhir</span>
+                        <strong id="pembelianTerakhir">-</strong>
+                    </div>
+                </div>
+
+            </section>
+
+            <div class="pembelian-actions">
+                <button class="primary-button" onclick="openPembelianModal()">+ Tambah Pembelian</button>
+            </div>
+
+            <div class="panel">
+
+                <div class="panel-header">
+                    <div>
+                        <h2>Riwayat Pembelian</h2>
+                        <p>Semua catatan pembelian kebutuhan kontrakan</p>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Tanggal</th>
+                                <th>Barang</th>
+                                <th>Kategori</th>
+                                <th>Jumlah</th>
+                                <th>Total Harga</th>
+                                <th>Keterangan</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="pembelianTable"></tbody>
+                    </table>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= PENGHUNI ================= -->
+        <section id="penghuni-page" class="page">
+
+            <header class="page-title">
+                <div>
+                    <h1>👥 Penghuni</h1>
+                    <p>Kelola data penghuni kontrakan</p>
+                </div>
+            </header>
+
+            <section class="penghuni-summary">
+
+                <div class="penghuni-card">
+                    <div class="penghuni-icon">👥</div>
+                    <div>
+                        <span>Total Penghuni</span>
+                        <strong id="totalPenghuni">0</strong>
+                    </div>
+                </div>
+
+                <div class="penghuni-card">
+                    <div class="penghuni-icon">🏠</div>
+                    <div>
+                        <span>Kamar Terisi</span>
+                        <strong id="kamarTerisi">0</strong>
+                    </div>
+                </div>
+
+                <div class="penghuni-card">
+                    <div class="penghuni-icon">🟢</div>
+                    <div>
+                        <span>Penghuni Aktif</span>
+                        <strong id="penghuniAktif">0</strong>
+                    </div>
+                </div>
+
+            </section>
+
+            <div class="penghuni-actions">
+                <button class="primary-button" onclick="openPenghuniModal()">+ Tambah Penghuni</button>
+            </div>
+
+            <div class="panel">
+
+                <div class="panel-header">
+                    <div>
+                        <h2>Daftar Penghuni</h2>
+                        <p>Data penghuni yang tinggal di kontrakan</p>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nama</th>
+                                <th>Kamar</th>
+                                <th>No. HP</th>
+                                <th>Tanggal Masuk</th>
+                                <th>Status</th>
+                                <th>Keterangan</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="penghuniTable"></tbody>
+                    </table>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= TUGAS ================= -->
+        <section id="tugas-page" class="page">
+
+            <header class="page-title">
+                <div>
+                    <h1>📋 Tugas</h1>
+                    <p>Kelola tugas dan pekerjaan kontrakan</p>
+                </div>
+            </header>
+
+            <section class="tugas-summary">
+
+                <div class="tugas-card">
+                    <div class="tugas-icon">📋</div>
+                    <div>
+                        <span>Total Tugas</span>
+                        <strong id="totalTugas">0</strong>
+                    </div>
+                </div>
+
+                <div class="tugas-card">
+                    <div class="tugas-icon">⏳</div>
+                    <div>
+                        <span>Belum Selesai</span>
+                        <strong id="tugasBelumSelesai">0</strong>
+                    </div>
+                </div>
+
+                <div class="tugas-card">
+                    <div class="tugas-icon">✅</div>
+                    <div>
+                        <span>Selesai</span>
+                        <strong id="tugasSelesai">0</strong>
+                    </div>
+                </div>
+
+            </section>
+
+            <div class="tugas-actions">
+                <button class="primary-button" onclick="openTugasModal()">+ Tambah Tugas</button>
+            </div>
+
+            <div class="panel">
+
+                <div class="panel-header">
+                    <div>
+                        <h2>Daftar Tugas</h2>
+                        <p>Daftar pekerjaan yang harus dilakukan</p>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Tugas</th>
+                                <th>Penanggung Jawab</th>
+                                <th>Deadline</th>
+                                <th>Prioritas</th>
+                                <th>Status</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tugasTable"></tbody>
+                    </table>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= LAPORAN ================= -->
+        <section id="laporan-page" class="page">
+
+            <header class="page-title">
+                <div>
+                    <h1>📈 Laporan</h1>
+                    <p>Ringkasan kondisi dan aktivitas kontrakan</p>
+                </div>
+            </header>
+
+            <section class="laporan-summary">
+
+                <div class="laporan-card">
+                    <div class="laporan-icon">💰</div>
+                    <div>
+                        <span>Saldo Kas</span>
+                        <strong id="laporanSaldoKas">Rp 0</strong>
+                    </div>
+                </div>
+
+                <div class="laporan-card">
+                    <div class="laporan-icon">⚡</div>
+                    <div>
+                        <span>Total Listrik</span>
+                        <strong id="laporanListrik">Rp 0</strong>
+                    </div>
+                </div>
+
+                <div class="laporan-card">
+                    <div class="laporan-icon">📶</div>
+                    <div>
+                        <span>Total Wi-Fi</span>
+                        <strong id="laporanWifi">Rp 0</strong>
+                    </div>
+                </div>
+
+                <div class="laporan-card">
+                    <div class="laporan-icon">🛒</div>
+                    <div>
+                        <span>Total Pembelian</span>
+                        <strong id="laporanPembelian">Rp 0</strong>
+                    </div>
+                </div>
+
+            </section>
+
+            <section class="laporan-summary">
+
+                <div class="laporan-card">
+                    <div class="laporan-icon">🍚</div>
+                    <div>
+                        <span>Stok Beras</span>
+                        <strong id="laporanBeras">0 kg</strong>
+                    </div>
+                </div>
+
+                <div class="laporan-card">
+                    <div class="laporan-icon">👥</div>
+                    <div>
+                        <span>Penghuni Aktif</span>
+                        <strong id="laporanPenghuni">0</strong>
+                    </div>
+                </div>
+
+                <div class="laporan-card">
+                    <div class="laporan-icon">📋</div>
+                    <div>
+                        <span>Tugas Belum Selesai</span>
+                        <strong id="laporanTugas">0</strong>
+                    </div>
+                </div>
+
+                <div class="laporan-card">
+                    <div class="laporan-icon">📊</div>
+                    <div>
+                        <span>Total Transaksi Kas</span>
+                        <strong id="laporanTransaksi">0</strong>
+                    </div>
+                </div>
+
+            </section>
+
+            <div class="panel laporan-panel">
+
+                <div class="panel-header">
+                    <div>
+                        <h2>💰 Ringkasan Keuangan</h2>
+                        <p>Ringkasan pemasukan dan pengeluaran kontrakan</p>
+                    </div>
+                </div>
+
+                <div class="laporan-keuangan">
+
+                    <div class="keuangan-item">
+                        <span>Total Pemasukan</span>
+                        <strong id="laporanPemasukan" class="income-text">Rp 0</strong>
+                    </div>
+
+                    <div class="keuangan-item">
+                        <span>Total Pengeluaran</span>
+                        <strong id="laporanPengeluaran" class="expense-text">Rp 0</strong>
+                    </div>
+
+                    <div class="keuangan-item">
+                        <span>Saldo Akhir</span>
+                        <strong id="laporanSaldoAkhir">Rp 0</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="panel laporan-panel">
+
+                <div class="panel-header">
+                    <div>
+                        <h2>📊 Pengeluaran Utama</h2>
+                        <p>Total pengeluaran berdasarkan kategori</p>
+                    </div>
+                </div>
+
+                <div class="laporan-kategori">
+
+                    <div class="kategori-item">
+                        <span>⚡ Listrik</span>
+                        <strong id="kategoriListrik">Rp 0</strong>
+                    </div>
+
+                    <div class="kategori-item">
+                        <span>📶 Wi-Fi</span>
+                        <strong id="kategoriWifi">Rp 0</strong>
+                    </div>
+
+                    <div class="kategori-item">
+                        <span>🛒 Pembelian</span>
+                        <strong id="kategoriPembelian">Rp 0</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="laporan-footer">
+                <span>🔄 Laporan diperbarui otomatis berdasarkan data yang tersimpan.</span>
+            </div>
+
+        </section>
+
+
+        <!-- ================= PENGATURAN ================= -->
+        <section id="pengaturan-page" class="page">
+
+            <header class="page-title">
+                <div>
+                    <h1>⚙️ Pengaturan</h1>
+                    <p>Kelola informasi dan data KontrakanKu</p>
+                </div>
+            </header>
+
+            <div class="settings-card">
+
+                <div class="settings-title">
+                    <span class="settings-icon">🏠</span>
+                    <div>
+                        <h3>Profil Kontrakan</h3>
+                        <p>Informasi dasar kontrakan</p>
+                    </div>
+                </div>
+
+                <div class="settings-form">
+
+                    <div class="form-group">
+                        <label for="namaKontrakan">Nama Kontrakan</label>
+                        <input type="text" id="namaKontrakan" placeholder="Masukkan nama kontrakan">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="namaKelompok">Nama Penghuni / Kelompok</label>
+                        <input type="text" id="namaKelompok" placeholder="Masukkan nama kelompok">
+                    </div>
+
+                    <button class="btn-primary" onclick="simpanPengaturan()">
+                        💾 Simpan Pengaturan
+                    </button>
+
+                </div>
+
+            </div>
+
+            <div class="settings-card">
+
+                <div class="settings-title">
+                    <span class="settings-icon">🎨</span>
+                    <div>
+                        <h3>Tampilan</h3>
+                        <p>Atur tampilan aplikasi</p>
+                    </div>
+                </div>
+
+                <div class="setting-row">
+
+                    <div>
+                        <strong>Mode Gelap</strong>
+                        <p>Gunakan tampilan gelap pada aplikasi</p>
+                    </div>
+
+                    <label class="switch">
+                        <input type="checkbox" id="darkModeToggle" onchange="toggleDarkMode()">
+                        <span class="slider"></span>
+                    </label>
+
+                </div>
+
+            </div>
+
+            <div class="settings-card">
+
+                <div class="settings-title">
+                    <span class="settings-icon">💾</span>
+                    <div>
+                        <h3>Data</h3>
+                        <p>Kelola data aplikasi</p>
+                    </div>
+                </div>
+
+                <div class="data-actions">
+                    <button class="btn-secondary" onclick="backupData()">📥 Backup Data</button>
+                    <button class="btn-danger" onclick="hapusSemuaData()">🗑️ Hapus Semua Data</button>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <footer>
+            © 2026 KontrakanKu
+        </footer>
+
+    </main>
+
+</div>
+
+
+<!-- ================= MODAL TRANSAKSI ================= -->
+<div class="modal" id="transactionModal">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+            <h2>Tambah Transaksi</h2>
+            <button id="closeModal" class="close-button" type="button">×</button>
+        </div>
+
+        <form id="transactionForm">
+
+            <label>Jenis Transaksi</label>
+            <select id="transactionType" required>
+                <option value="">Pilih jenis</option>
+                <option value="pemasukan">Pemasukan</option>
+                <option value="pengeluaran">Pengeluaran</option>
+            </select>
+
+            <label>Keterangan</label>
+            <input type="text" id="transactionDescription" placeholder="Contoh: Iuran kontrakan" required>
+
+            <label>Kategori</label>
+            <select id="transactionCategory" required>
+                <option value="">Pilih kategori</option>
+                <option value="Iuran">Iuran</option>
+                <option value="Listrik">Listrik</option>
+                <option value="Wi-Fi">Wi-Fi</option>
+                <option value="Beras">Beras</option>
+                <option value="Belanja">Belanja</option>
+                <option value="Perbaikan">Perbaikan</option>
+                <option value="Lainnya">Lainnya</option>
+            </select>
+
+            <label>Jumlah</label>
+            <input type="number" id="transactionAmount" placeholder="Contoh: 100000" min="1" required>
+
+            <label>Tanggal</label>
+            <input type="date" id="transactionDate" required>
+
+            <button type="submit" class="submit-button">Simpan Transaksi</button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- ================= MODAL LISTRIK ================= -->
+<div class="modal" id="listrikModal">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+            <h2>Tambah Pembelian Listrik</h2>
+            <button id="closeListrikModal" class="close-button" type="button">×</button>
+        </div>
+
+        <form id="listrikForm" class="form-modal">
+
+            <label>Tanggal Pembelian</label>
+            <input type="date" id="listrikDate" required>
+
+            <label>Nominal</label>
+            <input type="number" id="listrikAmount" placeholder="Contoh: 100000" min="1" required>
+
+            <label>Keterangan</label>
+            <input type="text" id="listrikDescription" placeholder="Contoh: Token listrik" required>
+
+            <button type="submit" class="submit-button">Simpan Pembelian</button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- ================= MODAL INFORMASI WI-FI ================= -->
+<div id="wifiModal" class="modal">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+            <h2>📶 Informasi Wi-Fi</h2>
+            <button onclick="closeWifiModal()" class="close-btn">×</button>
+        </div>
+
+        <div class="form-group">
+            <label>Provider Wi-Fi</label>
+            <input type="text" id="wifiProviderInput" placeholder="Contoh: IndiHome">
+        </div>
+
+        <div class="form-group">
+            <label>Biaya per Bulan</label>
+            <input type="number" id="wifiCostInput" placeholder="Contoh: 300000">
+        </div>
+
+        <div class="form-group">
+            <label>Tanggal Jatuh Tempo</label>
+            <input type="date" id="wifiDueDateInput">
+        </div>
+
+        <div class="form-group">
+            <label>Status Wi-Fi</label>
+            <select id="wifiStatusInput">
+                <option value="Aktif">Aktif</option>
+                <option value="Mati">Mati</option>
+            </select>
+        </div>
+
+        <div class="modal-actions">
+            <button class="secondary-btn" onclick="closeWifiModal()">Batal</button>
+            <button class="primary-btn" onclick="saveWifiInfo()">Simpan</button>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= MODAL PEMBAYARAN WI-FI ================= -->
+<div id="wifiPaymentModal" class="modal">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+            <h2>💳 Tambah Pembayaran</h2>
+            <button onclick="closeWifiPaymentModal()" class="close-btn">×</button>
+        </div>
+
+        <div class="form-group">
+            <label>Tanggal Pembayaran</label>
+            <input type="date" id="wifiPaymentDate">
+        </div>
+
+        <div class="form-group">
+            <label>Jumlah Pembayaran</label>
+            <input type="number" id="wifiPaymentAmount" placeholder="Contoh: 300000">
+        </div>
+
+        <div class="form-group">
+            <label>Status</label>
+            <select id="wifiPaymentStatus">
+                <option value="Lunas">Lunas</option>
+                <option value="Belum Lunas">Belum Lunas</option>
+            </select>
+        </div>
+
+        <div class="modal-actions">
+            <button class="secondary-btn" onclick="closeWifiPaymentModal()">Batal</button>
+            <button class="primary-btn" onclick="saveWifiPayment()">Simpan</button>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= MODAL BERAS ================= -->
+<div class="modal" id="berasModal">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+            <h2 id="berasModalTitle">🍚 Tambah Beras</h2>
+            <button onclick="closeBerasModal()" class="close-btn">×</button>
+        </div>
+
+        <div class="form-group">
+            <label>Tanggal</label>
+            <input type="date" id="berasDate">
+        </div>
+
+        <div class="form-group">
+            <label>Jumlah (kg)</label>
+            <input type="number" id="berasAmount" placeholder="Contoh: 5" min="0.1" step="0.1">
+        </div>
+
+        <div class="form-group">
+            <label>Keterangan</label>
+            <input type="text" id="berasDescription" placeholder="Contoh: Beli beras 5 kg">
+        </div>
+
+        <div class="modal-actions">
+            <button class="secondary-btn" onclick="closeBerasModal()">Batal</button>
+            <button class="primary-btn" onclick="saveBeras()">Simpan</button>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= MODAL PEMBELIAN ================= -->
+<div class="modal" id="pembelianModal">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+            <h2>🛒 Tambah Pembelian</h2>
+            <button onclick="closePembelianModal()" class="close-btn">×</button>
+        </div>
+
+        <div class="form-group">
+            <label>Tanggal</label>
+            <input type="date" id="pembelianDate">
+        </div>
+
+        <div class="form-group">
+            <label>Nama Barang</label>
+            <input type="text" id="pembelianBarang" placeholder="Contoh: Sabun cuci">
+        </div>
+
+        <div class="form-group">
+            <label>Kategori</label>
+            <select id="pembelianKategori">
+                <option value="">Pilih kategori</option>
+                <option value="Beras">Beras</option>
+                <option value="Makanan">Makanan</option>
+                <option value="Minuman">Minuman</option>
+                <option value="Kebersihan">Kebersihan</option>
+                <option value="Perlengkapan">Perlengkapan</option>
+                <option value="Lainnya">Lainnya</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Jumlah</label>
+            <input type="number" id="pembelianJumlah" placeholder="Contoh: 2" min="1">
+        </div>
+
+        <div class="form-group">
+            <label>Total Harga</label>
+            <input type="number" id="pembelianHarga" placeholder="Contoh: 50000" min="0">
+        </div>
+
+        <div class="form-group">
+            <label>Keterangan</label>
+            <input type="text" id="pembelianKeterangan" placeholder="Contoh: kebutuhan dapur">
+        </div>
+
+        <div class="modal-actions">
+            <button class="secondary-btn" onclick="closePembelianModal()">Batal</button>
+            <button class="primary-btn" onclick="savePembelian()">Simpan</button>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= MODAL PENGHUNI ================= -->
+<div class="modal" id="penghuniModal">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+            <h2 id="penghuniModalTitle">👤 Tambah Penghuni</h2>
+            <button onclick="closePenghuniModal()" class="close-btn">×</button>
+        </div>
+
+        <div class="form-group">
+            <label>Nama Penghuni</label>
+            <input type="text" id="penghuniNama" placeholder="Masukkan nama">
+        </div>
+
+        <div class="form-group">
+            <label>Kamar</label>
+            <input type="text" id="penghuniKamar" placeholder="Contoh: Kamar 1">
+        </div>
+
+        <div class="form-group">
+            <label>No. HP</label>
+            <input type="tel" id="penghuniHp" placeholder="Contoh: 081234567890">
+        </div>
+
+        <div class="form-group">
+            <label>Tanggal Masuk</label>
+            <input type="date" id="penghuniTanggal">
+        </div>
+
+        <div class="form-group">
+            <label>Status</label>
+            <select id="penghuniStatus">
+                <option value="Aktif">Aktif</option>
+                <option value="Tidak Aktif">Tidak Aktif</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Keterangan</label>
+            <input type="text" id="penghuniKeterangan" placeholder="Contoh: Ketua kamar">
+        </div>
+
+        <div class="modal-actions">
+            <button class="secondary-btn" onclick="closePenghuniModal()">Batal</button>
+            <button class="primary-btn" onclick="savePenghuni()">Simpan</button>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= MODAL TUGAS ================= -->
+<div class="modal" id="tugasModal">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+            <h2 id="tugasModalTitle">📋 Tambah Tugas</h2>
+            <button onclick="closeTugasModal()" class="close-btn">×</button>
+        </div>
+
+        <div class="form-group">
+            <label>Nama Tugas</label>
+            <input type="text" id="tugasNama" placeholder="Contoh: Membersihkan dapur">
+        </div>
+
+        <div class="form-group">
+            <label>Penanggung Jawab</label>
+            <input type="text" id="tugasPenanggungJawab" placeholder="Contoh: Budi">
+        </div>
+
+        <div class="form-group">
+            <label>Deadline</label>
+            <input type="date" id="tugasDeadline">
+        </div>
+
+        <div class="form-group">
+            <label>Prioritas</label>
+            <select id="tugasPrioritas">
+                <option value="Rendah">Rendah</option>
+                <option value="Sedang" selected>Sedang</option>
+                <option value="Tinggi">Tinggi</option>
+            </select>
+        </div>
+
+        <div class="modal-actions">
+            <button class="secondary-btn" onclick="closeTugasModal()">Batal</button>
+            <button class="primary-btn" onclick="saveTugas()">Simpan</button>
+        </div>
+
+    </div>
+
+</div>
+
+
+<script src="script.js"></script>
+</body>
+</html>
